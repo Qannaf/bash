@@ -76,26 +76,26 @@ Follow these steps to create a Hello World script:
 	```````
 
 ## 1.4. Importance of Quoting in Strings	printString.sh
-	`````
-	variable="Qannaf"
-	#*Weak: uses double quotes: "
-	echo "Hello $variable"				
-	#> Hello Qannaf
+`````
+variable="Qannaf"
+#*Weak: uses double quotes: "
+echo "Hello $variable"				
+#> Hello Qannaf
 
-	#*Strong: uses single quotes: 
-	echo 'Hello $variable'				
-	#>Hello $variable
+#*Strong: uses single quotes: 
+echo 'Hello $variable'				
+#>Hello $variable
 
-	#You can also use escape to prevent expansion:
-	echo "Hello \$variable"				
-	#>Hello $variable
-	`````
+#You can also use escape to prevent expansion:
+echo "Hello \$variable"				
+#>Hello $variable
+`````
 
 ## 1.5. Viewing information for Bash built-ins
-	`````
-	help <command>	This will display the Bash help (manual) page for the specified built-in.	For example, help unset 
-	To see a list of all built-ins with a short description, use help -d
-	`````
+`````
+help <command>	This will display the Bash help (manual) page for the specified built-in.	For example, help unset 
+To see a list of all built-ins with a short description, use help -d
+`````
 
 ## 1.6. Hello World in "Debug" mode	debug.sh
   * See what was writting in debug.sh
@@ -112,20 +112,20 @@ Follow these steps to create a Hello World script:
 	```````
 
 ## 1.7: Handling Named Arguments	handlingNameArg.sh
-	```
-	#!/bin/bash
-	deploy=false
-	uglify=false
-	while (( $# > 1 )); do case $1 in
-	--deploy) deploy="$2";;
-	--uglify) uglify="$2";;
-	*) break;
-	esac; shift 2
-	done
-	$deploy && echo "will deploy... deploy = $deploy"
-	$uglify && echo "will uglify... uglify = $uglify"
-	# how to run
-	# chmod +x handlingNameArg.sh
-	# ./handlingNameArg.sh --deploy true --uglify false
-	#>will deploy... deploy = true
-	```
+`````
+#!/bin/bash
+deploy=false
+uglify=false
+while (( $# > 1 )); do case $1 in
+--deploy) deploy="$2";;
+--uglify) uglify="$2";;
+*) break;
+esac; shift 2
+done
+$deploy && echo "will deploy... deploy = $deploy"
+$uglify && echo "will uglify... uglify = $uglify"
+# how to run
+# chmod +x handlingNameArg.sh
+# ./handlingNameArg.sh --deploy true --uglify false
+#>will deploy... deploy = true
+`````
