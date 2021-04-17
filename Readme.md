@@ -65,7 +65,7 @@ echo "You are ${action}ing."
 echo "bye $user. :)"
 ``````
 *Execute the helloVariable.sh
-``````
+`````
 ./helloUser.sh 				output #> Who are you?
 						  Qannaf
                                                   Hello, Qannaf.
@@ -92,7 +92,7 @@ echo "Hello \$variable"
 `````
 
 ## 1.5. Viewing information for Bash built-ins
-``````
+`````
 help <command>	This will display the Bash help (manual) page for the specified built-in.	For example, help unset 
 To see a list of all built-ins with a short description, use help -d
 `````
@@ -112,7 +112,7 @@ bash -x debug.sh
 ```````
 
 ## 1.7: Handling Named Arguments	handlingNameArg.sh
-```````
+```
 #!/bin/bash
 deploy=false
 uglify=false
@@ -128,4 +128,4 @@ $uglify && echo "will uglify... uglify = $uglify"
 # chmod +x handlingNameArg.sh
 # ./handlingNameArg.sh --deploy true --uglify false
 #>will deploy... deploy = true
-```````
+```
