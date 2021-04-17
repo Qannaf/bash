@@ -134,9 +134,8 @@ $uglify && echo "will uglify... uglify = $uglify"
 
 # Chapter 2: Script shebang
 ## 2.1: Env shebang
-
-#!/usr/bin/env bash
 `````
+#!/usr/bin/env bash
 echo "Env shebang"
 #>envShebang.sh							output: Env shebang
 #>bash envShebang.sh
