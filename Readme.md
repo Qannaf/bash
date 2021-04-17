@@ -8,18 +8,18 @@ echo "Hello World"
 * Non-Interactive Shell
 Follow these steps to create a Hello World script:
 
-*Create a new file called hello-world.sh
+  * Create a new file called hello-world.sh
 ``````
 nano helloWorld.sh
 ``````
 
-*Add this code:
+  * Add this code:
 ``````
 #!/bin/bash
 echo "Hello World"
 ``````
 
-*Execute the helloWorld.sh script from the command line using one of the following:
+  * Execute the helloWorld.sh script from the command line using one of the following:
 ``````
 ./helloWorld.sh 	– most commonly used, and recommended
 /bin/bash helloWorld.sh
@@ -29,27 +29,27 @@ sh helloWorld.sh
 
 
 ## 1.2. Hello World Using Variables
-*Create helloVariable.sh
+  * Create helloVariable.sh
 ``````
 nano helloVariable.sh
 ``````
-*Add this code:
+  * Add this code:
 ``````
 #!/usr/bin/env bash
 	printf "Hello, %s\n" "$1"			$1, which is the first command line argument
 #> Hello, Qannaf
 ```````
-*Execute the helloVariable.sh
+  * Execute the helloVariable.sh
 ``````
 ./helloVariable.sh Qannaf				output #> Hello, Qannaf
 ```````
 
 ## 1.3. Hello World with User Input
-*Create helloUser.sh
+  * Create helloUser.sh
 ```````
 nano helloUser.sh
 ```````
-*Add this code:
+  * Add this code:
 ``````
 #!/usr/bin/env bash
 
@@ -64,7 +64,7 @@ echo "You are ${action}ing."
 
 echo "bye $user. :)"
 ``````
-*Execute the helloVariable.sh
+  * Execute the helloVariable.sh
 `````
 ./helloUser.sh 				output #> Who are you?
 						  Qannaf
@@ -98,7 +98,7 @@ To see a list of all built-ins with a short description, use help -d
 `````
 
 ## 1.6. Hello World in "Debug" mode	debug.sh
-*See what was writting in debug.sh
+  * See what was writting in debug.sh
 `````
 cat cat debug.sh								output
 												#!/bin/bash
@@ -106,7 +106,7 @@ cat cat debug.sh								output
 												var="s"
 												v=$(expr 5 + $var)
 `````
-*debug debug.sh file
+  * debug debug.sh file
 ```````
 bash -x debug.sh 
 ```````
