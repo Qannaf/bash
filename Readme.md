@@ -1,4 +1,6 @@
 # bash Notes For Professionals
+
+# Chapter 1: Getting started with Bash
 ## 1.1. Hello World
 * Interactive Shell
 ``````
@@ -68,7 +70,7 @@ Follow these steps to create a Hello World script:
 	``````
 	./helloUser.sh 				output #> Who are you?
 							  Qannaf
-													  Hello, Qannaf.
+							  Hello, Qannaf.
 							  What are you doing?
 							  learn
 							  You are learning.
@@ -129,3 +131,78 @@ $uglify && echo "will uglify... uglify = $uglify"
 # ./handlingNameArg.sh --deploy true --uglify false
 #>will deploy... deploy = true
 `````
+
+# Chapter 2: Script shebang
+## 2.1: Env shebang
+
+#!/usr/bin/env bash
+`````
+echo "Env shebang"
+#>envShebang.sh							output: Env shebang
+#>bash envShebang.sh
+`````
+
+## 2.2: Direct shebang
+`````
+#!/bin/bash
+echo "Direct shebang"
+#>directShebang.sh						output: Direct shebang
+#>bash directShebang.sh
+`````
+
+
+## 2.3: Other shebangs
+`````
+#!/bin/bash something wrong
+echo "This line never gets printed"			
+#>otherShebang.sh						output: /bin/bash: something wrong: No such file or directory
+
+`````
+
+# Chapter 3: Navigating directories
+## 3.1: Absolute vs relative directories
+* Absolute
+use the entire name, starting with a slash /:
+```
+cd /home/Qannaf//bash/section3
+````
+* relative
+to change to a directory near your current directory
+For example, if you are already in /home/Qannaf//bash/ you can enter the subdirectory section3 :
+```
+cd abc
+```
+* going "up" a directory
+to go to the directory above the current directory 
+For example, if you are already in /home/Qannaf//bash/section3 and wanted to go to already in /home/Qannaf//bash/ :
+```
+cd ..
+```
+
+## 3.2: Change to the last directory
+```
+cd -
+```
+
+## 3.3: Change to the home directory
+* The default directory 
+```
+cd
+```
+* Explicit:
+```
+cd $HOME
+```
+* A shortcut for the home directory is ~, so that could be used as well.
+```
+cd ~
+```
+
+## 3.4: Change to the Directory of the Script
+```
+cd "$(dirname "$(readlink -f "$0")")"          this will be change the dirctory to /usr/bin
+```
+This command runs 3 commands:
+1. readlink -f "$0" determines the path to the current script ($0)
+2. dirname converts the path to script to the path to its directory
+3. cd changes the current work directory to the directory it receives from dirname
