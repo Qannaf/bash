@@ -102,7 +102,7 @@ To see a list of all built-ins with a short description, use help -d
 ## 1.6. Hello World in "Debug" mode	debug.sh
   * See what was writting in debug.sh
 	`````
-	cat cat debug.sh								output
+	cat debug.sh						     		output
 													#!/bin/bash
 													echo "Hello World\n"
 													var="s"
@@ -205,3 +205,226 @@ This command runs 3 commands:
 1. readlink -f "$0" determines the path to the current script ($0)
 2. dirname converts the path to script to the path to its directory
 3. cd changes the current work directory to the directory it receives from dirname
+
+
+# Chapter 4: Listing Files
+```
+Option Description
+-a, --all 				List all entries including ones that start with a dot
+-A, --almost-all 		List all entries excluding . and ..
+-c 						Sort files by change time
+-d, --directory 		List directory entries
+-h, --human-readable 	Show sizes in human readable format (i.e. K, M)
+-H 						Same as above only with powers of 1000 instead of 1024
+-l 						Show contents in long-listing format
+-o 						Long -listing format without group info
+-r, --reverse 			Show contents in reverse order
+-s, --size 				Print size of each file in blocks
+-S 						Sort by file size
+--sort=WORD 			Sort contents by a word. (i.e size, version, status)
+-t 						Sort by modification time
+-u 						Sort by last access time
+-v 						Sort by version
+-1 						List one file per line
+```
+* File Type
+The file type can be one of any of the following characters.
+Character File Type
+```
+- Regular file
+b Block special file
+c Character special file
+C High performance ("contiguous data") file
+d Directory
+D Door (special IPC file in Solaris 2.5+ only)
+l Symbolic link
+M Off-line ("migrated") file (Cray DMF)
+n Network special file (HP-UX)
+p FIFO (named pipe)
+P Port (special system file in Solaris 10+ only)
+s Socket
+? Some other file type
+```
+## 4.1: List Files in a Long Listing Format
+```
+ls -l 
+```
+
+## 4.2: List the Ten Most Recently Modified Files
+```
+ls -lt | head
+```
+
+## 4.3: List All Files Including Dotfiles
+```
+ls -a		or ls -A
+ls -all
+```
+
+## 4.4: List Files Without Using `ls`
+
+* display the files and directories that are in the current directory
+```
+printf "%s\n" *
+```
+* display only the directories in the current directory
+```
+printf "%s\n" */
+```
+* display only (some) image files
+```
+printf "%s\n" *.{gif,jpg,png}
+printf "%s\n" *.{pdf,}
+```
+
+* iterate over them
+```
+for file in "${files[@]}"; do
+echo "$file"
+done
+```
+
+## 4.5: List Files
+```
+ls
+```
+
+## 4.6: List Files in a Tree-Like Format
+```
+tree /folderName	or		tree /f
+tree -L 1 -d /tmp
+```
+
+## 4.7: List Files Sorted by Size
+```
+ls -l -S -r ./section1	-S option sorts the files in descending order of file size.
+ls -l -S -r ./section1	-r option the sort order is reversed.
+```
+
+# Chapter 5: Using cat
+```
+Option Details
+-n 	Print line numbers
+-v 	Show non-printing characters using ^ and M- notation except LFD and TAB
+-T 	Show TAB characters as ^I
+-E 	Show linefeed(LF) characters as $
+-e 	Same as -vE
+-b 	Number nonempty output lines, overrides -n
+-A 	equivalent to -vET
+-s 	suppress repeated empty output lines, s refers to squeeze
+```
+
+## 5.1: Concatenate files
+```
+cat file1 file2 file3 > file_all
+```
+cat can also be used similarly to concatenate files as part of a pipeline, e.g.
+```
+cat file1 file2 file3 | grep foo
+```
+
+## Section 5.2: Printing the Contents of a File
+* print the contents of a file.
+```
+cat file.txt
+```
+* If the file contains non-ASCII characters
+````
+cat -v unicode.txt	This can be quite useful for situations where control characters would otherwise be invisible.
+```
+* for interactive
+```
+less file.txt	or 	more file.txt
+```
+* To pass the contents of a file as input to a command
+```
+tr A-Z a-z <file.txt # as an alternative to cat file.txt | tr A-Z a-z
+```
+* In case the content needs to be listed backwards from its end 
+```
+tac file.txt
+```
+* If you want to print the contents with line numbers, then use -n with cat:
+```
+cat -n file.txt
+```
+* To display the contents of a file in a completely unambiguous byte-by-byte
+```
+printf 'Hëllö wörld' | xxd
+#>0000000: 48c3 ab6c 6cc3 b620 77c3 b672 6c64 H..ll.. w..rld
+```
+
+## 5.3: Write to a file
+* write to file
+```
+cat >file.txt	will let you write the text on terminal which will be saved in a file named file.		
+cat >>file.txt 	will do the same, except it will append the text to the end of the file.
+```
+N.B: Ctrl+D to end writing text on terminal (Linux)
+
+*stop condition
+cat <<END >>file	
+cat <<stop>>file
+
+## 5.4: Show non printable characters	file.txt
+```
+cat -v file.txt	 	or
+cat -vE file.txt 		#Useful in detecting trailing spaces.
+```
+e.g.
+```
+echo 'ض' | cat -vE		
+echo 'ض' | cat -A
+```
+
+## 5.5: Read from standard input
+```
+cat < file.txt
+printf "first line\nSecond line\n" | cat -n	
+```
+The echo command before | outputs two lines. The cat command acts on the output to add line numbers.
+
+5.6: Display line numbers with output
+* Use the --number flag to print line numbers before each line. Alternatively, -n does the same thing.
+```
+$ cat --number file.txt 	or 		cat file.txt | cat -n
+1 line 1
+2 line 2
+3
+4 line 4
+5 line 5
+```
+* To skip empty lines when counting lines, use the --number-nonblank, or simply -b.
+```
+$ cat -b file
+1 line 1
+2 line 2
+3 line 4
+4 line 5
+```
+
+## 5.7: Concatenate gzipped files
+* Files compressed by gzip can be directly concatenated into larger gzipped files.
+```
+cat file1.gz file2.gz file3.gz > combined.gz
+```
+* This is a property of gzip that is less efficient than concatenating the input files and gzipping the result:
+```
+cat file1 file2 file3 | gzip > combined.gz
+```
+e.g:
+```
+echo 'Hello world!' > helloWorld.txt
+echo 'Hollo Qannaf!' > helloQannaf.txt
+gzip helloWorld.txt
+gzip helloQannaflloQ.txt
+cat helloWorld.txt.gz helloQannaf.txt.gz > greetings.txt.gz
+gunzip greetings.txt.gz
+cat greetings.txt
+```
+Which results in
+```
+Hello world!
+Hello Qannaf!
+```
+

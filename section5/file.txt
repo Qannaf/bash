@@ -1,0 +1,5 @@
+printf "Qannaf\n here non printable characters\n é-è_çà°صباح الخير"
+echo "line 2\n"
+
+echo "line 4\n"
+echo "line 5\n"
