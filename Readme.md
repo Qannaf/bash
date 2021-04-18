@@ -369,21 +369,21 @@ N.B: Ctrl+D to end writing text on terminal (Linux)
 	```
 
 ## 5.4: Show non printable characters	file.txt
-	```
-	cat -v file.txt	 	or
-	cat -vE file.txt 		#Useful in detecting trailing spaces.
-	```
+```
+cat -v file.txt	 	or
+cat -vE file.txt 		#Useful in detecting trailing spaces.
+```
 e.g.
-	```
-	echo 'ض' | cat -vE		
-	echo 'ض' | cat -A
-	```
+```
+echo 'ض' | cat -vE		
+echo 'ض' | cat -A
+```
 
 ## 5.5: Read from standard input
-	```
-	cat < file.txt
-	printf "first line\nSecond line\n" | cat -n	
-	```
+```
+cat < file.txt
+printf "first line\nSecond line\n" | cat -n	
+```
 The echo command before | outputs two lines. The cat command acts on the output to add line numbers.
 
 5.6: Display line numbers with output
@@ -415,18 +415,18 @@ The echo command before | outputs two lines. The cat command acts on the output 
 	cat file1 file2 file3 | gzip > combined.gz
 	```
 e.g:
-	```
-	echo 'Hello world!' > helloWorld.txt
-	echo 'Hollo Qannaf!' > helloQannaf.txt
-	gzip helloWorld.txt
-	gzip helloQannaflloQ.txt
-	cat helloWorld.txt.gz helloQannaf.txt.gz > greetings.txt.gz
-	gunzip greetings.txt.gz
-	cat greetings.txt
-	```
+``````
+echo 'Hello world!' > helloWorld.txt
+echo 'Hollo Qannaf!' > helloQannaf.txt
+gzip helloWorld.txt
+gzip helloQannaflloQ.txt
+cat helloWorld.txt.gz helloQannaf.txt.gz > greetings.txt.gz
+gunzip greetings.txt.gz
+cat greetings.txt
+``````
 Which results in
-	```
-	Hello world!
-	Hello Qannaf!
-	```
+``````
+Hello world!
+Hello Qannaf!
+``````
 
