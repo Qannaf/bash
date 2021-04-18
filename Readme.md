@@ -325,106 +325,108 @@ cat file1 file2 file3 | grep foo
 
 ## Section 5.2: Printing the Contents of a File
 * print the contents of a file.
-```
-cat file.txt
-```
+	```
+	cat file.txt
+	```
 * If the file contains non-ASCII characters
-````
-cat -v unicode.txt	This can be quite useful for situations where control characters would otherwise be invisible.
-```
+	````
+	cat -v unicode.txt	This can be quite useful for situations where control characters would otherwise be invisible.
+	```
 * for interactive
-```
-less file.txt	or 	more file.txt
-```
+	```
+	less file.txt	or 	more file.txt
+	```
 * To pass the contents of a file as input to a command
-```
-tr A-Z a-z <file.txt # as an alternative to cat file.txt | tr A-Z a-z
-```
+	```
+	tr A-Z a-z <file.txt # as an alternative to cat file.txt | tr A-Z a-z
+	```
 * In case the content needs to be listed backwards from its end 
-```
-tac file.txt
-```
+	```
+	tac file.txt
+	```
 * If you want to print the contents with line numbers, then use -n with cat:
-```
-cat -n file.txt
-```
+	```
+	cat -n file.txt
+	```
 * To display the contents of a file in a completely unambiguous byte-by-byte
-```
-printf 'Hëllö wörld' | xxd
-#>0000000: 48c3 ab6c 6cc3 b620 77c3 b672 6c64 H..ll.. w..rld
-```
+	```
+	printf 'Hëllö wörld' | xxd
+	#>0000000: 48c3 ab6c 6cc3 b620 77c3 b672 6c64 H..ll.. w..rld
+	```
 
 ## 5.3: Write to a file
 * write to file
-```
-cat >file.txt	will let you write the text on terminal which will be saved in a file named file.		
-cat >>file.txt 	will do the same, except it will append the text to the end of the file.
-```
+	```
+	cat >file.txt	will let you write the text on terminal which will be saved in a file named file.		
+	cat >>file.txt 	will do the same, except it will append the text to the end of the file.
+	```
 N.B: Ctrl+D to end writing text on terminal (Linux)
 
 *stop condition
-cat <<END >>file	
-cat <<stop>>file
+	```
+	cat <<END >>file	
+	cat <<stop>>file
+	```
 
 ## 5.4: Show non printable characters	file.txt
-```
-cat -v file.txt	 	or
-cat -vE file.txt 		#Useful in detecting trailing spaces.
-```
+	```
+	cat -v file.txt	 	or
+	cat -vE file.txt 		#Useful in detecting trailing spaces.
+	```
 e.g.
-```
-echo 'ض' | cat -vE		
-echo 'ض' | cat -A
-```
+	```
+	echo 'ض' | cat -vE		
+	echo 'ض' | cat -A
+	```
 
 ## 5.5: Read from standard input
-```
-cat < file.txt
-printf "first line\nSecond line\n" | cat -n	
-```
+	```
+	cat < file.txt
+	printf "first line\nSecond line\n" | cat -n	
+	```
 The echo command before | outputs two lines. The cat command acts on the output to add line numbers.
 
 5.6: Display line numbers with output
 * Use the --number flag to print line numbers before each line. Alternatively, -n does the same thing.
-```
-$ cat --number file.txt 	or 		cat file.txt | cat -n
-1 line 1
-2 line 2
-3
-4 line 4
-5 line 5
-```
+	```
+	$ cat --number file.txt 	or 		cat file.txt | cat -n
+	1 line 1
+	2 line 2
+	3
+	4 line 4
+	5 line 5
+	```
 * To skip empty lines when counting lines, use the --number-nonblank, or simply -b.
-```
-$ cat -b file
-1 line 1
-2 line 2
-3 line 4
-4 line 5
-```
+	```
+	$ cat -b file
+	1 line 1
+	2 line 2
+	3 line 4
+	4 line 5
+	```
 
 ## 5.7: Concatenate gzipped files
 * Files compressed by gzip can be directly concatenated into larger gzipped files.
-```
-cat file1.gz file2.gz file3.gz > combined.gz
-```
+	```
+	cat file1.gz file2.gz file3.gz > combined.gz
+	```
 * This is a property of gzip that is less efficient than concatenating the input files and gzipping the result:
-```
-cat file1 file2 file3 | gzip > combined.gz
-```
+	```
+	cat file1 file2 file3 | gzip > combined.gz
+	```
 e.g:
-```
-echo 'Hello world!' > helloWorld.txt
-echo 'Hollo Qannaf!' > helloQannaf.txt
-gzip helloWorld.txt
-gzip helloQannaflloQ.txt
-cat helloWorld.txt.gz helloQannaf.txt.gz > greetings.txt.gz
-gunzip greetings.txt.gz
-cat greetings.txt
-```
+	```
+	echo 'Hello world!' > helloWorld.txt
+	echo 'Hollo Qannaf!' > helloQannaf.txt
+	gzip helloWorld.txt
+	gzip helloQannaflloQ.txt
+	cat helloWorld.txt.gz helloQannaf.txt.gz > greetings.txt.gz
+	gunzip greetings.txt.gz
+	cat greetings.txt
+	```
 Which results in
-```
-Hello world!
-Hello Qannaf!
-```
+	```
+	Hello world!
+	Hello Qannaf!
+	```
 
