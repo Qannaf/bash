@@ -13,8 +13,32 @@
 	1. [Viewing information for Bash built-ins](#1e)
 	1. [Hello World in "Debug" mode](#1f)
 	1. [Handling Named Arguments](#1g)
-1. [](#1)
-1. [](#1)
+1. [Chapter 2: Script shebang](#2)
+    1. [Env shebang](#2a)
+	1. [Direct shebang](#2b)
+	1. [Other shebangs](#2c)
+1. [Chapter 3: Navigating directories](#3)
+	1. [Absolute vs relative directories](#3a)
+	1. [Change to the last directory](#3b)
+	1. [Change to the home directory](#3c)
+	1. [Change to the Directory of the Script](#2d)
+1. [Chapter 4: Listing Files](#4)
+	1. [List Files in a Long Listing Format](#4a)
+	1. [List the Ten Most Recently Modified Files](#4b)
+	1. [List All Files Including Dotfiles](#4c)
+	1. [List Files Without Using ls](#4d)
+	1. [List Files](#4e)
+	1. [List Files in a Tree-Like Format](#4f)
+	1. [List Files Sorted by Size](#4g)
+1. [Chapter 5: Using cat](#5)
+	1. [Concatenate files](#5a)
+	1. [Printing the Contents of a File](#5b)
+	1. [Write to a file](#5c)
+	1. [Show non printable characters file.txt](#5d)
+	1. [Read from standard input](#5e)
+	1. [Display line numbers with output](#5f)
+	1. [ Concatenate gzipped files](#5g)
+
 
 <a name="1"></a>
 
@@ -168,56 +192,66 @@ $uglify && echo "will uglify... uglify = $uglify"
 #>will deploy... deploy = true
 ```
 
+<a name="2"></a>
+
 # Chapter 2: Script shebang
+<a name="2a"></a>
+
 ## 2.1: Env shebang
-`````
+```BASH
 #!/usr/bin/env bash
 echo "Env shebang"
 #>envShebang.sh							output: Env shebang
 #>bash envShebang.sh
-`````
+```
+<a name="2b"></a>
 
 ## 2.2: Direct shebang
-`````
+```BASH
 #!/bin/bash
 echo "Direct shebang"
 #>directShebang.sh						output: Direct shebang
 #>bash directShebang.sh
-`````
+```
 
+<a name="2c"></a>
 
 ## 2.3: Other shebangs
-`````
+```BASH
 #!/bin/bash something wrong
 echo "This line never gets printed"			
 #>otherShebang.sh						output: /bin/bash: something wrong: No such file or directory
-
-`````
+```
+<a name="3"></a>
 
 # Chapter 3: Navigating directories
+<a name="3a"></a>
+
 ## 3.1: Absolute vs relative directories
 * Absolute
 use the entire name, starting with a slash /:
+```BASH
+cd /home/Qannaf/bash/section3
 ```
-cd /home/Qannaf//bash/section3
-````
 * relative
 to change to a directory near your current directory
-For example, if you are already in /home/Qannaf//bash/ you can enter the subdirectory section3 :
+For example, if you are already in /home/Qannaf/bash/ you can enter the subdirectory section3 :
 ```
 cd abc
 ```
 * going "up" a directory
 to go to the directory above the current directory 
-For example, if you are already in /home/Qannaf//bash/section3 and wanted to go to already in /home/Qannaf//bash/ :
+For example, if you are already in /home/Qannaf/bash/section3 and wanted to go to already in /home/Qannaf//bash/ :
 ```
 cd ..
 ```
+<a name="3b"></a>
 
 ## 3.2: Change to the last directory
 ```
 cd -
 ```
+<a name="3c"></a>
 
 ## 3.3: Change to the home directory
 * The default directory 
@@ -232,9 +266,10 @@ cd $HOME
 ```
 cd ~
 ```
+<a name="3d"></a>
 
 ## 3.4: Change to the Directory of the Script
-```
+```BASH
 cd "$(dirname "$(readlink -f "$0")")"          this will be change the dirctory to /usr/bin
 ```
 This command runs 3 commands:
@@ -242,9 +277,11 @@ This command runs 3 commands:
 2. dirname converts the path to script to the path to its directory
 3. cd changes the current work directory to the directory it receives from dirname
 
+<a name="4"></a>
 
 # Chapter 4: Listing Files
-```
+
+```BASH
 Option Description
 -a, --all 				List all entries including ones that start with a dot
 -A, --almost-all 		List all entries excluding . and ..
@@ -281,64 +318,73 @@ P Port (special system file in Solaris 10+ only)
 s Socket
 ? Some other file type
 ```
+<a name="4a"></a>
+
 ## 4.1: List Files in a Long Listing Format
 ```
 ls -l 
 ```
+<a name="4b"></a>
 
 ## 4.2: List the Ten Most Recently Modified Files
-```
+```BASH
 ls -lt | head
 ```
+<a name="4c"></a>
 
 ## 4.3: List All Files Including Dotfiles
-```
+```BASH
 ls -a		or ls -A
 ls -all
 ```
+<a name="4d"></a>
 
 ## 4.4: List Files Without Using `ls`
 
 * display the files and directories that are in the current directory
-```
+```BASH
 printf "%s\n" *
 ```
 * display only the directories in the current directory
-```
+```BASH
 printf "%s\n" */
 ```
 * display only (some) image files
-```
+```BASH
 printf "%s\n" *.{gif,jpg,png}
 printf "%s\n" *.{pdf,}
 ```
 
 * iterate over them
-```
+```BASH
 for file in "${files[@]}"; do
 echo "$file"
 done
 ```
+<a name="4e"></a>
 
 ## 4.5: List Files
-```
+```BASH
 ls
 ```
+<a name="4f"></a>
 
 ## 4.6: List Files in a Tree-Like Format
-```
+```BASH
 tree /folderName	or		tree /f
 tree -L 1 -d /tmp
 ```
+<a name="'g"></a>
 
 ## 4.7: List Files Sorted by Size
-```
+```BASH
 ls -l -S -r ./section1	-S option sorts the files in descending order of file size.
 ls -l -S -r ./section1	-r option the sort order is reversed.
 ```
+<a name="5"></a>
 
 # Chapter 5: Using cat
-```
+```BASH
 Option Details
 -n 	Print line numbers
 -v 	Show non-printing characters using ^ and M- notation except LFD and TAB
@@ -349,82 +395,87 @@ Option Details
 -A 	equivalent to -vET
 -s 	suppress repeated empty output lines, s refers to squeeze
 ```
-
+<a name="5a"></a>
 ## 5.1: Concatenate files
-```
+```BASH
 cat file1 file2 file3 > file_all
 ```
 cat can also be used similarly to concatenate files as part of a pipeline, e.g.
 ```
 cat file1 file2 file3 | grep foo
 ```
+<a name="5b"></a>
 
-## Section 5.2: Printing the Contents of a File
+## 5.2: Printing the Contents of a File
 * print the contents of a file.
-	```
+	```BASH
 	cat file.txt
 	```
 * If the file contains non-ASCII characters
-	````
+	```BASH
 	cat -v unicode.txt	This can be quite useful for situations where control characters would otherwise be invisible.
 	```
 * for interactive
-	```
+	```BASH
 	less file.txt	or 	more file.txt
 	```
 * To pass the contents of a file as input to a command
-	```
+	```BASH
 	tr A-Z a-z <file.txt # as an alternative to cat file.txt | tr A-Z a-z
 	```
 * In case the content needs to be listed backwards from its end 
-	```
+	```BASH
 	tac file.txt
 	```
 * If you want to print the contents with line numbers, then use -n with cat:
-	```
+	```BASH
 	cat -n file.txt
 	```
 * To display the contents of a file in a completely unambiguous byte-by-byte
-	```
+	```BASH
 	printf 'Hëllö wörld' | xxd
 	#>0000000: 48c3 ab6c 6cc3 b620 77c3 b672 6c64 H..ll.. w..rld
 	```
+<a name="5c"></a>
 
 ## 5.3: Write to a file
 * write to file
-	```
+	```BASH
 	cat >file.txt	will let you write the text on terminal which will be saved in a file named file.		
 	cat >>file.txt 	will do the same, except it will append the text to the end of the file.
 	```
 N.B: Ctrl+D to end writing text on terminal (Linux)
 
-*stop condition
-	```
+* stop condition
+	```BASH
 	cat <<END >>file	
 	cat <<stop>>file
 	```
+<a name="5d"></a>
 
 ## 5.4: Show non printable characters	file.txt
-```
+```BASH
 cat -v file.txt	 	or
 cat -vE file.txt 		#Useful in detecting trailing spaces.
 ```
 e.g.
-```
+```BASH
 echo 'ض' | cat -vE		
 echo 'ض' | cat -A
 ```
+<a name="5e"></a>
 
 ## 5.5: Read from standard input
-```
+```BASH
 cat < file.txt
 printf "first line\nSecond line\n" | cat -n	
 ```
 The echo command before | outputs two lines. The cat command acts on the output to add line numbers.
+<a name="5f"></a>
 
-5.6: Display line numbers with output
+## 5.6: Display line numbers with output
 * Use the --number flag to print line numbers before each line. Alternatively, -n does the same thing.
-	```
+	```BASH
 	$ cat --number file.txt 	or 		cat file.txt | cat -n
 	1 line 1
 	2 line 2
@@ -441,17 +492,19 @@ The echo command before | outputs two lines. The cat command acts on the output 
 	4 line 5
 	```
 
+<a name="5g"></a>
+
 ## 5.7: Concatenate gzipped files
 * Files compressed by gzip can be directly concatenated into larger gzipped files.
-	```
+	```BASH
 	cat file1.gz file2.gz file3.gz > combined.gz
 	```
 * This is a property of gzip that is less efficient than concatenating the input files and gzipping the result:
-	```
+	```BASH
 	cat file1 file2 file3 | gzip > combined.gz
 	```
 e.g:
-``````
+```BASH
 echo 'Hello world!' > helloWorld.txt
 echo 'Hollo Qannaf!' > helloQannaf.txt
 gzip helloWorld.txt
@@ -459,10 +512,10 @@ gzip helloQannaflloQ.txt
 cat helloWorld.txt.gz helloQannaf.txt.gz > greetings.txt.gz
 gunzip greetings.txt.gz
 cat greetings.txt
-``````
+```
 Which results in
-``````
+```BASH
 Hello world!
 Hello Qannaf!
-``````
+```
 
