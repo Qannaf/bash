@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="450" height="150" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Gnu-bash-logo.svg/1200px-Gnu-bash-logo.svg.png">
+</p>
+
 # bash Notes For Professionals
 
 # Table of contents
