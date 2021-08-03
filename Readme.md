@@ -1,58 +1,81 @@
 # bash Notes For Professionals
 
+# Table of contents
+1. [Chapter 1: Getting started with Bash](#1)
+    1. [Hello World](#1a)
+	1. [Hello World Using Variables](#1b)
+	1. [Hello World with User Input](31c)
+	1. [Importance of Quoting in Strings](#1d)
+	1. [Viewing information for Bash built-ins](#1e)
+	1. [Hello World in "Debug" mode](#1f)
+	1. [Handling Named Arguments](#1g)
+1. [](#1)
+1. [](#1)
+
+<a name="1"></a>
+
 # Chapter 1: Getting started with Bash
+
+<a name="1a"></a>
 ## 1.1. Hello World
+
 * Interactive Shell
-``````
+
+```BASH
 echo "Hello World"
-``````
+```
 
 * Non-Interactive Shell
 Follow these steps to create a Hello World script:
 
   * Create a new file called hello-world.sh
-	``````
+
+	```BASH
 	nano helloWorld.sh
-	``````
+	```
 
   * Add this code:
-	``````
+	```BASH
 	#!/bin/bash
 	echo "Hello World"
-	``````
+	```
 
   * Execute the helloWorld.sh script from the command line using one of the following:
-	``````
+
+	```BASH
 	./helloWorld.sh 	– most commonly used, and recommended
 	/bin/bash helloWorld.sh
 	bash helloWorld.sh 	– assuming /bin is in your $PATH
 	sh helloWorld.sh
-	```````
+	```
 
+<a name="1b"></a>
 
 ## 1.2. Hello World Using Variables
   * Create helloVariable.sh
-	``````
+	```BASH
 	nano helloVariable.sh
-	``````
+	```
   * Add this code:
-	``````
+	```BASH
 	#!/usr/bin/env bash
 		printf "Hello, %s\n" "$1"			$1, which is the first command line argument
 	#> Hello, Qannaf
-	```````
+	```
   * Execute the helloVariable.sh
-	``````
+	```BASH
 	./helloVariable.sh Qannaf				output #> Hello, Qannaf
-	```````
+	```
+
+<a name="1c"></a>
 
 ## 1.3. Hello World with User Input
   * Create helloUser.sh
-	```````
+	```BASH
 	nano helloUser.sh
-	```````
+	```
   * Add this code:
-	``````
+	```BASH
 	#!/usr/bin/env bash
 
 	echo "Who are you?"
@@ -65,9 +88,10 @@ Follow these steps to create a Hello World script:
 
 
 	echo "bye $user. :)"
-	``````
+	```
+
   * Execute the helloVariable.sh
-	``````
+	```BASH
 	./helloUser.sh 				output #> Who are you?
 							  Qannaf
 							  Hello, Qannaf.
@@ -75,10 +99,12 @@ Follow these steps to create a Hello World script:
 							  learn
 							  You are learning.
 							  bye Qannaf. :)
-	```````
+	```
 
+<a name="1d"></a>
 ## 1.4. Importance of Quoting in Strings	printString.sh
-`````
+
+```BASH
 variable="Qannaf"
 #*Weak: uses double quotes: "
 echo "Hello $variable"				
@@ -91,30 +117,36 @@ echo 'Hello $variable'
 #You can also use escape to prevent expansion:
 echo "Hello \$variable"				
 #>Hello $variable
-`````
+```
+
+<a name="1e"></a>
 
 ## 1.5. Viewing information for Bash built-ins
-`````
+```BASH
 help <command>	This will display the Bash help (manual) page for the specified built-in.	For example, help unset 
 To see a list of all built-ins with a short description, use help -d
-`````
+```
+
+<a name="1f"></a>
 
 ## 1.6. Hello World in "Debug" mode	debug.sh
   * See what was writting in debug.sh
-	`````
+	```BASH
 	cat debug.sh						     		output
 													#!/bin/bash
 													echo "Hello World\n"
 													var="s"
 													v=$(expr 5 + $var)
-	`````
+	```
   * debug debug.sh file
-	```````
+	```BASH
 	bash -x debug.sh 
-	```````
+	```
+
+<a name="1g"></a>
 
 ## 1.7: Handling Named Arguments	handlingNameArg.sh
-`````
+```BASH
 #!/bin/bash
 deploy=false
 uglify=false
@@ -130,7 +162,7 @@ $uglify && echo "will uglify... uglify = $uglify"
 # chmod +x handlingNameArg.sh
 # ./handlingNameArg.sh --deploy true --uglify false
 #>will deploy... deploy = true
-`````
+```
 
 # Chapter 2: Script shebang
 ## 2.1: Env shebang
