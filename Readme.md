@@ -237,11 +237,11 @@ cd /home/Qannaf/bash/section3
 to change to a directory near your current directory
 For example, if you are already in /home/Qannaf/bash/ you can enter the subdirectory section3 :
 ```
-cd abc
+cd section3
 ```
 * going "up" a directory
 to go to the directory above the current directory 
-For example, if you are already in /home/Qannaf/bash/section3 and wanted to go to already in /home/Qannaf//bash/ :
+For example, if you are already in /home/Qannaf/bash/section3 and wanted to go to already in /home/Qannaf/bash/ :
 ```
 cd ..
 ```
@@ -508,7 +508,7 @@ e.g:
 echo 'Hello world!' > helloWorld.txt
 echo 'Hollo Qannaf!' > helloQannaf.txt
 gzip helloWorld.txt
-gzip helloQannaflloQ.txt
+gzip helloQannaf.txt
 cat helloWorld.txt.gz helloQannaf.txt.gz > greetings.txt.gz
 gunzip greetings.txt.gz
 cat greetings.txt
