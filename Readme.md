@@ -518,4 +518,6 @@ Which results in
 Hello world!
 Hello Qannaf!
 ```
+# Tips 
+![alt text](image_9c08dfd2-14d0-4117-993b-984e38f62d7920220209_085723.jpg?raw=true "sortie de code")
 
