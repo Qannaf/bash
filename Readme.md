@@ -518,6 +518,29 @@ Which results in
 Hello world!
 Hello Qannaf!
 ```
-# Tips 
+# Tips
+
+## Call a function in shell Scripting?
+```BASH
+#!/bin/bash
+
+a(){
+	echo "a"
+}
+
+b(){
+	echo "b"
+}
+
+opt=$1
+case $opt in
+    a) a ;;
+    b) b ;;
+    *) echo "Nothing to do"
+       exit ;;
+esac 
+
+#./script.sh  a
+```
 ![alt text](image_9c08dfd2-14d0-4117-993b-984e38f62d7920220209_085723.jpg?raw=true "sortie de code")
 
